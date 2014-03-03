@@ -1,0 +1,73 @@
+
+* {
+	font-family: "Verdana", "Geneva", sans-serif;
+}
+
+h1 {
+	font-size:20px;
+	font-weight:bold;
+	color:#0066FF;
+	padding-top:6px;
+}
+
+img {
+	margin-top:2em;
+}
+
+#form {
+	width:380px;
+	float:left;
+}
+
+#link {
+	width:auto;
+	padding-top:150px;
+	padding-left:500px;
+}
+
+span {
+	padding-right:5px;
+	float:left;
+	width:8em;
+}
+
+#frame,.entry {
+	padding-top:20px;
+}
+
+#sub,button {
+	border:0px none;
+	width:4em;
+	height:2em;
+	background-color:#3366FF;
+	color:#FFFFFF;
+	font-size:24px;
+	font-weight:bold;
+	margin-left:6.2em;
+}
+
+#wel {
+	background-color:#FFFFC8;
+	padding:5px 5px 5px 5px;
+	font-weight:bold;
+	text-align:center;
+}
+
+#agreement {
+	padding:1em 2em 2em 2em;
+	background-color:#FFCCFF;
+	border:0.5px #FFFF99;
+	margin-top:2em;
+}
+
+#agree{
+	margin-left:2em;
+}
+
+.tips {
+	color:red;
+	visibility:hidden;
+	margin-left:0.5em;
+	font-size:15px;
+}
+

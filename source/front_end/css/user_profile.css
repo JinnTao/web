@@ -1,0 +1,30 @@
+
+
+
+/*
+** cssfile of user_profile
+*/
+
+
+#wrapper{
+	margin: auto;
+	overflow: hidden;
+	font-size: 18px;
+}
+
+span{
+	width: 20em;
+}
+
+#left{
+	float: left;
+}
+
+#right{
+	float: right;
+}
+
+#message{
+	border: 2px solid gray;
+	padding: 5px;
+}

@@ -1,0 +1,62 @@
+#searchform{
+	margin-left: 25px;
+}
+
+#right-colomn{
+	width:30%;
+	margin-top: 0px;
+	float:right;
+}
+
+#left-colomn{
+	margin-left: 25px;
+	width:900px;
+}
+
+
+#searchform {
+ 
+	float:left;
+	padding-bottom:20px;
+}
+
+.searcher{
+	width: 50%;
+	float:left;
+	margin-left:0em;
+	/*border-right:1px solid gray;*/
+}
+
+
+
+.searcher p, h5{
+	margin-left:2em;
+	margin-bottom: 5em;
+}
+#search_interesting{
+	width: 67%;
+	clear:left;
+	float:left;
+	margin-left:0;
+	border-top:1px solid gray;
+}
+
+
+.might_friend{
+	border:1px solid green;
+	width:20%;
+	float:left;
+	margin-left:1em;
+	margin-bottom:1em;
+}
+
+#changegroup{
+	color:blue;
+	font-style:italic;
+	clear:both;
+	
+}
+
+.isfriend , .addfriend{
+	float: right;
+}
