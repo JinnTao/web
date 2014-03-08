@@ -5,16 +5,6 @@ class db{
 
 /*** Declare instance ***/
 private static $instance = NULL;
-/*private $db_config = array(
-		'hostname' 	=> 'localhost' ,
-		'username' 	=> 'root' ,
-		'password' 	=> '123456',
-		'database' 	=> 'sysu',
-		'charset'	=> 'utf8',
-		'pconnect'	=> 1,
-		'log'		=> 1,
-		'logfilepath' => './'
-	);*/
 
 	
 public function __construct() {
@@ -48,35 +38,42 @@ public function insert_new_user($para){
 		$para2[] = "'" . $id . "'"; // here calculate id.
 		$para2[] = "'" . $para['email'] . "'";
 		$para2[] = "'" . $para['password'] . "'";
-		$para2[] = "''";
 	        		
 		$insert_string = implode(", ", $para2); 
-		$insert_string2 = "INSERT INTO Users (uid, uemail, npwd)
+		$insert_string2 = "INSERT INTO users (uid, uemail, npwd)
 		" . " VALUES (" . $insert_string . " )";
 		self::$instance->exec($insert_string2);
 		self::$instance->commit();
-      
         return $id;
 		}
 	 catch (Exception $e) {
-		 self::$instance->rollBack();
-		 return false;
+		self::$instance->rollBack();
+		echo "cannot insert users   ".$e->getMessage(). "    " . $insert_string2;
+		return false;
 	}
 } 
 
 function has_user_email($email){
 	try{
 		self::$instance->beginTransaction();
-		$query = self::$instance->query("Select uid From Users Where uemail = " . "'" . $email . "'");
+		$check_string = "Select uid From Users Where uemail = " . "'" . $email . "'";
+		$query = self::$instance->query($check_string);
 		self::$instance->commit();
-		$result = mysql_fetch_array($query);
-		if(!$result['uid'])
-			return false;
-		else
+		$query->setFetchMode(PDO::FETCH_ASSOC); 
+		$result = $query->fetchAll();
+		if($result){
+			echo "exist";
 			return true;
+		}
+		else{
+			echo "unexist";
+			return false;
+		}
+
 	}
 	 catch (Exception $e) {
 		 self::$instance->rollBack();
+		 echo "cannot check email ".$e->getMessage(). "    " . $insert_string2;
 		 return false;
 	}
 }
