@@ -64,7 +64,7 @@ function show($name) {
 	# -----MODIFICATIONS!!
     # We want to use the COMMMON parts of a page (e.g. header and footer)
     # so we use a master page and include the file in that page rather than directly including here.
-    include __SITE_PATH . '/application/' . 'master_view.php';
+    include __SITE_PATH . '/views/' . 'master_view.php';
 	# include ($path);              
 }
 
