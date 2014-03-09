@@ -62,11 +62,11 @@ function has_user_email($email){
 		$query->setFetchMode(PDO::FETCH_ASSOC); 
 		$result = $query->fetchAll();
 		if($result){
-			echo "exist";
+			// echo "exist";
 			return true;
 		}
 		else{
-			echo "unexist";
+			// echo "unexist";
 			return false;
 		}
 
