@@ -15,6 +15,7 @@
 	}
 	mysql_close($link);
 	
+<<<<<<< HEAD
 	/*create tables*/
 	$link = mysql_connect($db_config["hostname"], $db_config["username"], $db_config["password"]);
 	mysql_select_db($db_config["database"], $link);
@@ -23,6 +24,22 @@
 	uemail VARCHAR(20),
 	npwd VARCHAR(10),
 	PRIMARY KEY (uid))";
+=======
+	/*create tables Users*/
+	$link = mysql_connect($db_config["hostname"], $db_config["username"], $db_config["password"]);
+	mysql_select_db($db_config["database"], $link);
+	$sql_create_user_table = "CREATE TABLE Users(
+	id int(10) NOT NULL auto_increment,
+	email VARCHAR(40) NOT NULL,
+	password VARCHAR(40) NOT NULL,
+	name VARCHAR(20),
+	photo VARCHAR(60),
+	gender CHAR(1),
+	age CHAR(4),
+	description TEXT,
+	sign_up_time DATE NOT NULL,
+	PRIMARY KEY (id))";
+>>>>>>> aaa/master
 	
 	if(mysql_query($sql_create_user_table, $link)){
 		echo 'Table Users created!' . "<br>";
@@ -33,6 +50,59 @@
 		
 	mysql_close($link);
 	
+<<<<<<< HEAD
+=======
+	/*create tables Admin*/
+	$link = mysql_connect($db_config["hostname"], $db_config["username"], $db_config["password"]);
+	mysql_select_db($db_config["database"], $link);
+	$sql_create_table = "CREATE TABLE Admin(
+	id int(10) NOT NULL auto_increment,
+	name VARCHAR(40) NOT NULL,
+	password VARCHAR(40) NOT NULL,
+	description TEXT,
+	PRIMARY KEY (id))";
+	
+	/*intialize admin account*/
+	if(mysql_query($sql_create_table, $link)){
+		echo 'Table Admin created!' . "<br>";
+	}
+	else
+		echo 'Error creating table::' . mysql_error() . "<br>";
+		
+	
+	$root_admin_sql =  "Insert Into Admin(name,password,description) VALUES('administration','5588','permission is all')";
+	if(mysql_query($root_admin_sql))
+	{
+		echo 'Admin root initialized! <br>';
+	}
+	else
+		echo 'Error initialized ::'.mysql_error().'<br>';
+		
+	
+	mysql_close($link);
+
+	/*create tables Topics*/
+	$link = mysql_connect($db_config["hostname"], $db_config["username"], $db_config["password"]);
+	mysql_select_db($db_config["database"], $link);
+	$sql_create_table = "CREATE TABLE Topics(
+	id int(11) NOT NULL auto_increment,
+	title TEXT NOT NULL,
+	content LONGTEXT NOT NULL,
+	start_id int(10) NOT NULL,
+	start_time DATE NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (start_id) references Users (id) ON DELETE CASCADE
+	)";
+	
+	if(mysql_query($sql_create_table, $link)){
+		echo 'Table Topics created!' . "<br>";
+	}
+	else
+		echo 'Error creating table::' . mysql_error() . "<br>";
+		
+		
+	mysql_close($link);
+>>>>>>> aaa/master
 	
 ?>
 </html>

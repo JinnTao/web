@@ -55,7 +55,11 @@ public function registry_manager()
 
 		$newUser['email'] = $_REQUEST['email'];
 		$newUser['password'] = $_REQUEST['password'];
+<<<<<<< HEAD
 		$id = $this->registry->db->insert_new_user($newUser);
+=======
+		$id = $this->registry->db->new_user($newUser);
+>>>>>>> aaa/master
         $this->registry->template->show('register_sucess');
         header("refresh:5;url=index.php?rt=index/login");
 		// header("location: index.php?rt=index/login");
@@ -64,6 +68,7 @@ public function registry_manager()
 
 public function login_manager()
 {
+<<<<<<< HEAD
 		// if ($frm_action = 'check') {
 		// 	$useremail = $_GET['useremail'];
 		// 	$userpw = $_GET['userpw'];
@@ -77,6 +82,21 @@ public function login_manager()
 		// 	}
 		// 	die();
 		// }
+=======
+		if ($frm_action = 'check') {
+			$useremail = $_GET['useremail'];
+			$userpw = $_GET['userpw'];
+			$check = 0;
+			$check = $this->registry->db->check_email_password($useremail,$userpw);
+			// if ($check == 2) {
+			// 	header("location: index.php?rt=index");
+			// }
+			// else{
+				echo $check;
+			// /
+			die();
+		}
+>>>>>>> aaa/master
 
 }
 }
