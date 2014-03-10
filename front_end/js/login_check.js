@@ -5,6 +5,16 @@
 //}
 //
 $('document').ready(function(){
+<<<<<<< HEAD
+
+	$("button").mousedown(function () {
+		checklogin();
+	})
+	
+	function checklogin () {
+		var useremail = $("#inputEmail").val();
+		var userpw = $("inputPassword").val();
+=======
 	$("button").mousedown(function () {
 		checklogin();
 	})
@@ -25,11 +35,19 @@ $('document').ready(function(){
 		$("span.emailtip").html("");
 		var useremail = $("#inputEmail").val();
 		var userpw = $("#inputPassword").val();
+>>>>>>> aaa/master
 		
 		var checkurl = "index.php?rt=index/login_manager&useremail="+ useremail+ "&userpw=" + userpw;
 		$.get(checkurl,function(str) {
 			if (str == '0') {
 				$("span.emailtip").html("该邮箱不存在，请重新输入");
+<<<<<<< HEAD
+				$("#inputEmail").val('');
+				$("#inputPassword").val('');
+			} else if (str == '1') {
+				$("span.pwtip").html("密码错误，请重新输入");
+				$("#inputPassword").val('');
+=======
 				// $("#inputEmail").focus();
 				$("#inputEmail").val("");
 				$("#inputPassword").val("");
@@ -38,6 +56,7 @@ $('document').ready(function(){
 				$("#inputPassword").val("");
 			}else{
 				location.href = "index.php"
+>>>>>>> aaa/master
 			};
 		})
 		return false;

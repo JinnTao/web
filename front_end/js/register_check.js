@@ -94,8 +94,11 @@ $('document').ready(function(){
 		$.get(checkurl,function(str) {
 			if (str == '1') {
 				$("span.emailtip").html("该邮箱已经注册，请重新输入");
+<<<<<<< HEAD
+=======
 				$("span.emailtip").css("color","red");			
 				$("#inputEmail").val("");
+>>>>>>> aaa/master
 			} else{
 				$("span.emailtip").html("");
 				$("i.emailtip").show();

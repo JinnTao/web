@@ -26,6 +26,31 @@ public function __construct() {
 private function __clone(){
 }
 
+<<<<<<< HEAD
+
+public function insert_new_user($para){
+	try {
+		self::$instance->beginTransaction();
+		
+        $date = getdate();
+		$id = $date[0];
+	
+		$para2 = array();
+		$para2[] = "'" . $id . "'"; // here calculate id.
+		$para2[] = "'" . $para['email'] . "'";
+		$para2[] = "'" . $para['password'] . "'";
+	        		
+		$insert_string = implode(", ", $para2); 
+		$insert_string2 = "INSERT INTO users (uid, uemail, npwd)
+		" . " VALUES (" . $insert_string . " )";
+		self::$instance->exec($insert_string2);
+		self::$instance->commit();
+        return $id;
+		}
+	 catch (Exception $e) {
+		self::$instance->rollBack();
+		echo "cannot insert users   ".$e->getMessage(). "    " . $insert_string2;
+=======
 // insert new user!
 public function new_user($para){
 	try {
@@ -48,10 +73,17 @@ public function new_user($para){
 	 catch (Exception $e) {
 		self::$instance->rollBack();
 		echo "cannot insert users   ".$e->getMessage(). "    <br>"; 
+>>>>>>> aaa/master
 		return false;
 	}
 } 
 
+<<<<<<< HEAD
+function has_user_email($email){
+	try{
+		self::$instance->beginTransaction();
+		$check_string = "Select uid From Users Where uemail = " . "'" . $email . "'";
+=======
 public function update_user($para){
 	try {
 		self::$instance->beginTransaction();
@@ -83,22 +115,34 @@ function has_user_email($email){
 	try{
 		self::$instance->beginTransaction();
 		$check_string = "Select id From Users Where email = " . "'" . $email . "'";
+>>>>>>> aaa/master
 		$query = self::$instance->query($check_string);
 		self::$instance->commit();
 		$query->setFetchMode(PDO::FETCH_ASSOC); 
 		$result = $query->fetchAll();
 		if($result){
+<<<<<<< HEAD
+			// echo "exist";
+			return true;
+		}
+		else{
+			// echo "unexist";
+=======
 			//echo "exist <br>";
 			return true;
 		}
 		else{
 			//echo "unexist <br>";
+>>>>>>> aaa/master
 			return false;
 		}
 
 	}
 	 catch (Exception $e) {
 		 self::$instance->rollBack();
+<<<<<<< HEAD
+		 echo "cannot check email ".$e->getMessage(). "    " . $insert_string2;
+=======
 		 echo "cannot check email ".$e->getMessage(). "    <br>";
 		 return false;
 	}
@@ -134,10 +178,14 @@ function check_email_password($email,$password){
 	 catch (Exception $e) {
 		 self::$instance->rollBack();
 		 echo "Error: ".$e->getMessage(). "    <br>" ;
+>>>>>>> aaa/master
 		 return false;
 	}
 }
 
+<<<<<<< HEAD
+
+=======
 public function new_topic($para){
 	try {
 		// test para valign?
@@ -201,6 +249,7 @@ public function del_user($id){
 		return false;
 	}
 } 
+>>>>>>> aaa/master
 
 
 }/*** end of class ***/

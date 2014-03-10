@@ -15,6 +15,16 @@
 	}
 	mysql_close($link);
 	
+<<<<<<< HEAD
+	/*create tables*/
+	$link = mysql_connect($db_config["hostname"], $db_config["username"], $db_config["password"]);
+	mysql_select_db($db_config["database"], $link);
+	$sql_create_user_table = "CREATE TABLE Users(
+	uid CHAR(10),
+	uemail VARCHAR(20),
+	npwd VARCHAR(10),
+	PRIMARY KEY (uid))";
+=======
 	/*create tables Users*/
 	$link = mysql_connect($db_config["hostname"], $db_config["username"], $db_config["password"]);
 	mysql_select_db($db_config["database"], $link);
@@ -29,6 +39,7 @@
 	description TEXT,
 	sign_up_time DATE NOT NULL,
 	PRIMARY KEY (id))";
+>>>>>>> aaa/master
 	
 	if(mysql_query($sql_create_user_table, $link)){
 		echo 'Table Users created!' . "<br>";
@@ -39,6 +50,8 @@
 		
 	mysql_close($link);
 	
+<<<<<<< HEAD
+=======
 	/*create tables Admin*/
 	$link = mysql_connect($db_config["hostname"], $db_config["username"], $db_config["password"]);
 	mysql_select_db($db_config["database"], $link);
@@ -89,6 +102,7 @@
 		
 		
 	mysql_close($link);
+>>>>>>> aaa/master
 	
 ?>
 </html>
