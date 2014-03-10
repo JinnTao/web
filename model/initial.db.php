@@ -20,10 +20,10 @@
 	mysql_select_db($db_config["database"], $link);
 	$sql_create_user_table = "CREATE TABLE Users(
 	id int(10) NOT NULL auto_increment,
-	email VARCHAR(20) NOT NULL,
-	password VARCHAR(20) NOT NULL,
-	name VARCHAR(15),
-	photo VARCHAR(20),
+	email VARCHAR(40) NOT NULL,
+	password VARCHAR(40) NOT NULL,
+	name VARCHAR(20),
+	photo VARCHAR(60),
 	gender CHAR(1),
 	age CHAR(4),
 	description TEXT,
@@ -44,9 +44,9 @@
 	mysql_select_db($db_config["database"], $link);
 	$sql_create_table = "CREATE TABLE Admin(
 	id int(10) NOT NULL auto_increment,
-	name VARCHAR(20) NOT NULL,
-	password VARCHAR(20) NOT NULL,
-	description VARCHAR(200),
+	name VARCHAR(40) NOT NULL,
+	password VARCHAR(40) NOT NULL,
+	description TEXT,
 	PRIMARY KEY (id))";
 	
 	/*intialize admin account*/
@@ -73,8 +73,8 @@
 	mysql_select_db($db_config["database"], $link);
 	$sql_create_table = "CREATE TABLE Topics(
 	id int(11) NOT NULL auto_increment,
-	title VARCHAR(20) NOT NULL,
-	content VARCHAR(100) NOT NULL,
+	title TEXT NOT NULL,
+	content LONGTEXT NOT NULL,
 	start_id int(10) NOT NULL,
 	start_time DATE NOT NULL,
 	PRIMARY KEY (id),
