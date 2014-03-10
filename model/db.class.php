@@ -56,23 +56,24 @@ public function update_user($para){
 	try {
 		self::$instance->beginTransaction();
 		
-        $date = date('y-m-d');
 		
-		$para2 = array();
-		$para2[] = "'" . $para['email'] . "'";
-		$para2[] = "'" . $para['password'] . "'";
-	    $para2[] = "'" . $date . "'";
-				
-		$insert_string = implode(", ", $para2); 
-		$insert_string2 = "INSERT INTO users (email, password,sign_up_time)
-		" . " VALUES (" . $insert_string . " )";
+		$insert_string2 = "UPDATE Users SET 
+		    name = '". $para['name'] .
+		"' , photo = '".$para['photo'] .
+		"' , gender = '". $para['gender'] .
+		"' , age = '". $para['age'].
+		"' , description = '".  $para['description'].
+		"' Where id = '". $para['id']."'";
+		
 		self::$instance->exec($insert_string2);
+		echo "update finish!" .$insert_string2 ;
 		self::$instance->commit();
-        return $para['email'];
+	
+        return true;
 		}
 	 catch (Exception $e) {
 		self::$instance->rollBack();
-		echo "cannot insert users   ".$e->getMessage(). "    <br>"; 
+		echo "cannot update ".$e->getMessage().$insert_string2 . "    <br>"; 
 		return false;
 	}
 } 

@@ -26,7 +26,7 @@
 	photo VARCHAR(20),
 	gender CHAR(1),
 	age CHAR(4),
-	description VARCHAR(50),
+	description TEXT,
 	sign_up_time DATE NOT NULL,
 	PRIMARY KEY (id))";
 	
@@ -46,7 +46,7 @@
 	id int(10) NOT NULL auto_increment,
 	name VARCHAR(20) NOT NULL,
 	password VARCHAR(20) NOT NULL,
-	description VARCHAR(50),
+	description VARCHAR(200),
 	PRIMARY KEY (id))";
 	
 	/*intialize admin account*/
