@@ -5,39 +5,39 @@
 //}
 //
 $('document').ready(function(){
-	$("button").mousedown(function () {
-		checklogin();
+	$("#l-login").mousedown(function () {
+		var state = false;
+		if(!state){
+			checklogin();
+		}
 	})
-	$("inputEmail").focus(function () {
-		// if (state1 == false) {
-		// 	$(this).val('');
-		// };
-		$("#inputEmail").val('');
-		$("#inputPassword").val('');
+	$("#l-inputEmail").focus(function () {
+		$("#l-inputEmail").val('');
+		$("#l-inputPassword").val('');
 	})
-	$("#inputPassword").focus(function () {
-		// if (state2 == false) {
-		// 	$(this).val('');
-		// };
-		$("#inputPassword").val('');
+	$("#l-inputPassword").focus(function () {
+
+		$("#l-inputPassword").val('');
 	})
 	function checklogin () {
-		$("span.emailtip").html("");
-		var useremail = $("#inputEmail").val();
-		var userpw = $("#inputPassword").val();
+		$("span.l-emailtip").html("");
+		var useremail = $("#l-inputEmail").val();
+		var userpw = $("#l-inputPassword").val();
 		
-		var checkurl = "index.php?rt=index/login_manager&useremail="+ useremail+ "&userpw=" + userpw;
+		var checkurl = "index.php?rt=index/login_ajax&useremail="+ useremail+ "&userpw=" + userpw;
 		$.get(checkurl,function(str) {
 			if (str == '0') {
-				$("span.emailtip").html("该邮箱不存在，请重新输入");
+				$("span.l-emailtip").html("该邮箱不存在，请重新输入");
 				// $("#inputEmail").focus();
-				$("#inputEmail").val("");
-				$("#inputPassword").val("");
+				$("#l-inputEmail").val("");
+				$("#l-inputPassword").val("");
+				state = false;
 			} else if (str == '1') {
-				$("span.pwtip").html("密码错误，请重新输入");
-				$("#inputPassword").val("");
+				$("span.l-pwtip").html("密码错误，请重新输入");
+				$("#l-inputPassword").val("");
+				state = false;
 			}else{
-				location.href = "index.php"
+				state = true;
 			};
 		})
 		return false;

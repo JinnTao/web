@@ -57,7 +57,7 @@ class router {
  {
 	/*** check the route ***/
 	$this->getController();
-
+	echo $this->getController();
 	/*** if the file is not there diaf ***/
 	if (is_readable($this->file) == false)
 	{

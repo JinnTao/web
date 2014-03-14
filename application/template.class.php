@@ -64,10 +64,31 @@ function show($name) {
 	# -----MODIFICATIONS!!
     # We want to use the COMMMON parts of a page (e.g. header and footer)
     # so we use a master page and include the file in that page rather than directly including here.
-    include __SITE_PATH . '/views/' . 'master_view.php';
-	# include ($path);              
+    include __SITE_PATH . '/views/' . 'master.php';
+	#include ($path);              
 }
 
+function sysu_show($name) {
+	$path = __SITE_PATH . '/views' . '/' . $name . '.php';
+
+	if (file_exists($path) == false)
+	{
+		throw new Exception('Template not found in '. $path);
+		return false;
+	}
+
+	// Load variables
+	foreach ($this->vars as $key => $value)
+	{
+		$$key = $value;
+	}
+
+	# -----MODIFICATIONS!!
+    # We want to use the COMMMON parts of a page (e.g. header and footer)
+    # so we use a master page and include the file in that page rather than directly including here.
+    include __SITE_PATH . '/views/' . 'sysu_master.php';
+	#include ($path);              
+}
 
 }
 
