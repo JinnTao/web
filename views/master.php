@@ -20,7 +20,24 @@
     	<script src="./front_end/js/bootstrap.min.js"></script>
         <script src="./front_end/js/sco.modal.js"></script>
     	<script src="<?php echo $jsfile ?>" type="text/javascript"></script>
-        <script src="<?php echo $r_jsfile ?>" type="text/javascript"></script>
         <script src="<?php echo $l_jsfile ?>" type="text/javascript"></script>
+        <script src="<?php echo $r_jsfile ?>" type="text/javascript"></script>
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
