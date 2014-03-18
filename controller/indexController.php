@@ -11,7 +11,7 @@ public function index() {
 		$this->registry->template->r_jsfile = './front_end/js/register_check.js';
 		$this->registry->template->l_jsfile = './front_end/js/login_check.js';
 		$this->registry->template->cssfile = './front_end/css/index.css';
-    	$this->registry->template->show('loading');
+    	$this->registry->template->show('index');
 }
 
 public function register() {
@@ -23,9 +23,9 @@ public function register() {
 public function login() {
 		#$this->registry->template->cssfile = './front_end/css/index_front.css';
 		$this->registry->template->jsfile = './front_end/js/login_check.js';
-       // $this->registry->template->show('login');
+        $this->registry->template->show('login');
 }
-
+// 注册异步处理，判断输入的邮箱是否已被注册
 public function registry_ajax()
 {
 		if ($frm_action = 'check') {
@@ -56,10 +56,10 @@ public function registry_manager()
 		$id = $this->registry->db->new_user($newUser);
         $this->registry->template->show('loading');
 		
-        //header("refresh:2;url=index.php?rt=sysu_index/index");
+        header("refresh:2;url=index.php?rt=sysu_index/index");
 
 }
-
+// 登录异步处理，判断邮箱与密码的正确性
 public function login_ajax()
 {
 		if ($frm_action = 'check') {
@@ -73,8 +73,6 @@ public function login_ajax()
 		}
 
 }
-
-
 
 public function login_manager()
 {

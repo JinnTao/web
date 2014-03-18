@@ -1,7 +1,7 @@
 <div class="container-narrow">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li> <a href="#Modal_login" class="register_protocol" data-toggle="modal" >Sign In</a></li>
+          <li> <a href="index.php?rt=index/login" data-title="登录" class="register_protocol" data-trigger="modal">Sign In</a></li>
         </ul>
         <h3 >Project name</h3>
       </div>
@@ -40,9 +40,9 @@
 
 
 <!-- Modal -->
-<div id="Modal_login" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div id="Modal_login" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
- 	<?php include 'login.php' ?>
+ 	< ?php include 'login.php' ?>
 </div>
-</div>
+</div> -->
