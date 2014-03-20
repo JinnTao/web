@@ -6,23 +6,42 @@ Class indexController Extends baseController {
 
 public function index() {
 		session_destroy();
+		
+		header("Location:index.php?rt=sysu_index/index");
+	/*	
+		$jsfile = array();
+		$cssfile = array();
+		
+		$jsfile[] = './front_end/js/register_check.js';
+		$jsfile[] = './front_end/js/login_check.js';
 
-	
-		$this->registry->template->r_jsfile = './front_end/js/register_check.js';
-		$this->registry->template->l_jsfile = './front_end/js/login_check.js';
-		$this->registry->template->cssfile = './front_end/css/index.css';
-    	$this->registry->template->show('index');
+		$cssfile[] = './front_end/css/index.css';
+
+		
+		$this->registry->template->jsfile = $jsfile;
+		$this->registry->template->cssfile = $cssfile;
+		
+		
+    	$this->registry->template->show('index');*/
 }
 
 public function register() {
-		#$this->registry->template->cssfile = './front_end/css/index_front.css';
-		$this->registry->template->jsfile = './front_end/js/register_check.js';	
+		$jsfile = array();
+	
+		$jsfile[] = './front_end/js/register_check.js';
+
+		$this->registry->template->jsfile = $jsfile;
+
         $this->registry->template->show('register');
 }
 
 public function login() {
-		#$this->registry->template->cssfile = './front_end/css/index_front.css';
-		$this->registry->template->jsfile = './front_end/js/login_check.js';
+		$jsfile = array();
+
+		$jsfile[] = './front_end/js/login_check.js';
+
+		$this->registry->template->jsfile = $jsfile;
+		
         $this->registry->template->show('login');
 }
 // 注册异步处理，判断输入的邮箱是否已被注册

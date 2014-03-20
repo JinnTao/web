@@ -1,11 +1,24 @@
 <!DOCTYPE HTML> <html>
     <head>
         <title><?php echo "MySYSU" ?></title>
+
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <link href="./front_end/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen"/> 
-     	<link href="<?php echo $cssfile ?>" type="text/css" rel="stylesheet" media="screen"/> 
         <link href="./front_end/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" media="screen"/>
         <link href="./front_end/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen"/>
+		 <link href="./front_end/css/sysu_master.css" type="text/css" rel="stylesheet" media="screen"/>
+         <?php
+		if	(isset($cssfile)){
+			foreach($cssfile as $value){
+				echo '<link href="'.$value.'" type="text/css" rel="stylesheet" 
+
+media="screen"/> ';
+
+			}
+		}
+				
+		?>
+
     </head>
     <body>
 <div class=" navbar navbar-fixed-top">
@@ -20,7 +33,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="index.php">个人主页</a></li>
-              <li><a href="#about">话题</a></li>
+              <li ><a href="index.php?rt=sysu_index/topic">话题</a></li>
               <li><a href="#contact">时间轴</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -36,7 +49,7 @@
               </li>
             </ul>
             <div class="nav navbar-text pull-right">
-            	<a  href="#"><i class="icon-user icon-balck"></i> <?php echo $_SESSION['email']?></a>
+            	<a  href="#"><i class="icon-user icon-balck"></i>JinnTao</a>
   				<a  class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
   				<ul class="dropdown-menu">
     				<li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
@@ -52,12 +65,21 @@
         </div>
       </div>
     </div>
+    <br/>
+        <br/> <br/>
     
-    
-<div id="main">
+  <div class="container_master">
       <?php include $path ?>
-</div>
-    
+      
+      </div>
+      
+      
+      
+<br/>
+<br/>
+<br/>
+<br/>
+
 <div class="container">
    <footer>
             
@@ -65,17 +87,27 @@
 
    </footer> 
 </div> 
-            
-    	<script src="./front_end/js/jquery.js"></script>
-    	<script src="./front_end/js/bootstrap.min.js"></script>
-        <script src="./front_end/js/sco.modal.js"></script>
-    	<script src="<?php echo $jsfile ?>" type="text/javascript"></script>
-        <script src="<?php echo $r_jsfile ?>" type="text/javascript"></script>
-        <script src="<?php echo $l_jsfile ?>" type="text/javascript"></script>
+
+
+<script src="./front_end/js/jquery.js"></script>
+<script src="./front_end/js/bootstrap.min.js"></script>
+<script src="./front_end/js/sco.modal.js"></script>
+<script src="./front_end/js/jquery.hotkeys.js"></script>
+<script src="./front_end/js/bootstrap-wysiwyg.js"></script>
+  <?php
+		if	(isset($jsfile)){
+			foreach($jsfile as $value){
+				echo '<script src="'.$value.'"></script>';
+			}
+		}		
+		?>
+
+<script>
+ 
+</script>
+
     </body>
 </html>
-
-
 
 
 

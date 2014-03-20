@@ -1,0 +1,47 @@
+/* CSS Document */
+body{
+
+
+
+
+}
+.topic-content-ellipsis p{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-indent:2em 
+	
+}
+.article-foot{
+	margin-left:0px;
+	margin-bottom:0px;
+}
+.article-foot span{
+	cursor:pointer;
+	
+}
+.topic-writer{
+	color:#666;
+	margin-bottom:0px;
+}
+.topic-container{
+}
+.editor{
+	max-height: 500px;
+	height: 300px;
+	background-color: white;
+	border-collapse: separate;
+	border: 1px solid rgb(204, 204, 204);
+	padding: 4px;
+	box-sizing: content-box;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+	overflow: scroll;
+	outline: none;
+}
+.topic-btn{
+	margin-top:10px;
+}
