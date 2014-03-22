@@ -170,7 +170,65 @@ public function new_topic($para){
 		return false;
 	}
 } 
-public function del_topic($id){
+public function get_topics(){
+	try {
+ 		self::$instance->beginTransaction();
+		$sql_string = "Select * From topics";
+		$query = self::$instance->query($sql_string);
+		self::$instance->commit();
+		
+		
+		$query->setFetchMode(PDO::FETCH_ASSOC); 
+		$topic_array = $query->fetchAll();
+		//print_r ($topic_array);
+        //echo "topic create successfully!";
+		return $topic_array;
+		}
+	 catch (Exception $e) {
+		self::$instance->rollBack();
+		echo "cannot query ".$e->getMessage(). "    <br>"; 
+		return false;
+	}
+}
+public function get_topicById($id){
+	try {
+ 		self::$instance->beginTransaction();
+		$sql_string = "Select * From topics where id = "."'".$id."'"."";
+		$query = self::$instance->query($sql_string);
+		self::$instance->commit();
+		
+		
+		$query->setFetchMode(PDO::FETCH_ASSOC); 
+		$topic = $query->fetchAll();
+		//print_r ($topic_array);
+        //echo "topic create successfully!";
+		return $topic;
+		}
+	 catch (Exception $e) {
+		self::$instance->rollBack();
+		echo "cannot query ".$e->getMessage(). "    <br>"; 
+		return false;
+	}
+}
+
+public function update_topic($topic){
+	try {
+ 		self::$instance->beginTransaction();
+		$sql_string = 'UPDATE topics SET title='.'"'.$topic['title'].'"'.', content='.'"'.$topic['content'].'"'.' WHERE id='.'"'.$topic['id'].'"';
+
+		self::$instance->exec($sql_string);
+		self::$instance->commit();
+		return true;
+		}
+	 catch (Exception $e) {
+		self::$instance->rollBack();
+		echo "cannot update ".$e->getMessage(). "    <br>"; 
+		return false;
+	}
+
+}
+
+public function del_topicById($id){
 	try {
 		self::$instance->beginTransaction();
 		$insert_string2 = "DELETE FROM topics WHERE id = '".$id."'";

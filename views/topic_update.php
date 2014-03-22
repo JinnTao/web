@@ -1,32 +1,6 @@
-<?php
-foreach($topic_array as $topic){
-echo '	
 
-  		<div class="topic-container">
-			<a href="index.php?rt=sysu_index/topic_view&topic_id='.$topic['id'].'"><h4>'.$topic['title'].'</h4></a>
-			<div  class="topic-content-ellipsis">
-			'.$topic['content'].'
-			</div>
-
-			<div class="article-foot">
-            	<span><i class="icon-thumbs-up"></i><font>512</font></span>&nbsp;
-          		<span><i class="icon-thumbs-down"></i><font>22</font></span>&nbsp;
-				<span onclick="index.php?rt=sysu_index/topic_update&topic_id='.$topic['id'].'"><i class="icon-pencil"></i><font></font></span>&nbsp;
-           		<span><i class="icon-trash"></i><font></font></span>
-            	<block class="pull-right topic-writer">
-                	by&nbsp;:&nbsp;<small class="topic-writer">'.$topic['start_time'].'</small>
-					<small class="topic-writer">'.$topic['start_id'].'</small>
-				</block>
-          </div>
-          <hr size="4" color="#999999"/> 
-    	</div> 
-';
-
-}
-?>
-
-<form action="index.php?rt=sysu_index/topic_manager" onsubmit="return formSubmit(this)" method="post">
-  <input type="text" placeholder="Title" class="input-block-level" id="topic_title" name="topic_title">
+<form action="index.php?rt=sysu_index/topic_update_manage&topic_id=<?php echo $topic['0']['id']; ?>" onsubmit="return formSubmit(this)" method="post">
+  <input type="text" placeholder="Title" class="input-block-level" id="topic_title" name="topic_title" value="<?php echo $topic['0']['title']; ?>">
   <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
       <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
@@ -75,13 +49,8 @@ echo '
     </div>
 
     <div id="editor" class="editor" name="topic_content">
-      Go ahead&hellip;
+      <?php echo $topic['0']['content']; ?>
     </div>
     
      <button id="publish" type="submit" class="btn topic-btn">发布</button>
 </form>
-
-
-
-
-

@@ -30,3 +30,14 @@
 	
     window.prettyPrint && prettyPrint();
   });
+  
+  function formSubmit(form){
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'topic_content';
+    input.value = document.getElementById('editor').innerHTML;
+	input.id = 'topic_content';
+    form.appendChild(input);
+		var dsa = 1;
+    return true;
+}

@@ -1,0 +1,33 @@
+/* CSS Document */
+/* CSS Document */
+body{
+
+
+
+
+}
+.topic-content-ellipsis p{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-indent:2em 
+	
+}
+.article-foot{
+	margin-left:0px;
+	margin-bottom:0px;
+}
+.article-foot span{
+	cursor:pointer;
+	
+}
+.topic-writer{
+	color:#666;
+	margin-bottom:0px;
+}
+.topic-container{
+}
+
+.topic-btn{
+	margin-top:10px;
+}
+

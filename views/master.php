@@ -25,7 +25,7 @@ media="screen"/> ';
   
             <?php 
 				include $path;
-		    ?>
+		    ?> 
 
             
     	<script src="./front_end/js/jquery.js"></script>
