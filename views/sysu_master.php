@@ -21,7 +21,9 @@ media="screen"/> ';
 
     </head>
     <body>
-<div class=" navbar navbar-fixed-top">
+<!-- Fixed navbar -->
+ 
+    <div class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -29,49 +31,59 @@ media="screen"/> ';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">SYSU Campus</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="index.php">个人主页</a></li>
-              <li ><a href="index.php?rt=sysu_index/topic">话题</a></li>
-              <li><a href="#contact">时间轴</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
-            </ul>
-            <div class="nav navbar-text pull-right">
-            	<a  href="#"><i class="icon-user icon-balck"></i>JinnTao</a>
-  				<a  class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
-  				<ul class="dropdown-menu">
-    				<li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
-    				<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-    				<li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
-    				<li class="divider"></li>
-    				<li><a href="#"><i class="i"></i> Make admin</a></li>
-  				</ul>
-       			
-           		 <a href="#" >Sign out</a>
+          <a class="brand" href="index.php">MySYSU</a>
+        
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="index.php?rt=sysu_index">主页</a></li>
+            <li><a href="index.php?rt=sysu_index/topic">话题</a></li>
+            <li><a href="#find">发现</a></li>
+            <li class="dropdown">
+              <a href="#messages" class="dropdown-toggle" data-toggle="dropdown">消息 <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">提到我的</a></li>
+                <li><a href="#">加我好友</a></li>
+                <li><a href="#">给我点赞</a></li>
+
+               
+              </ul>
+            </li>
+
+          </ul>
+
+          <form class="navbar-form pull-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="搜索话题、人">
+            
+            <button type="submit" class="btn btn-default">搜索</button>
             </div>
-          </div><!--/.nav-collapse -->
-        </div>
+            
+          </form>
+                              
+          <ul class="nav pull-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-balck"></i>usermail<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><i class="icon-pencil"></i>编辑</a></li>
+          <li><a href="#"><i class="icon-trash"></i> 删除</a></li>
+          <li><a href="#"><i class="icon-ban-circle"></i> 禁止</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><i class="i"></i> 管理员权限</a></li>
+        </ul>
+      </li>
+      <li><a href="index.php" >Sign out</a></li>
+      
+    </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
-    <br/>
-        <br/> <br/>
+    </div>
+<br/><br/><br/>
     
   <div class="container_master">
       <?php include $path ?>
       
-      </div>
+  </div>
       
       
       
@@ -82,9 +94,9 @@ media="screen"/> ';
 
 <div class="container">
    <footer>
-            
-        2014 &copy; All rights reserved.          
-
+       <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">    
+       <p align="center">2014<a href="http://www.weibo.com/ahtxd" target="_blank">@MySYSU</a> &copy; All rights reserved.</p>         
+       </nav>
    </footer> 
 </div> 
 

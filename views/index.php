@@ -1,4 +1,4 @@
-<div class="container-narrow">
+ <div class="container-narrow">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li> <a href="index.php?rt=index/login" data-title="登录" class="register_protocol" data-trigger="modal">Sign In</a></li>

@@ -86,5 +86,8 @@ Class sysu_indexController Extends baseController {
 
     	$this->registry->template->sysu_show('topic_view');
 	}
+	public function topic_del(){
+		$current_topic['id'] = $_REQUEST['topic_id'];
+	}
 }
 ?>
