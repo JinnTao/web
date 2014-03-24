@@ -72,7 +72,7 @@ Class sysu_indexController Extends baseController {
 		$this->registry->template->jsfile = $jsfile;
 		$this->registry->template->cssfile = $cssfile;
 		
-		$this->registry->template->topic = $this->registry->db->get_topicById($_REQUEST['topic_id']);
+		$this->registry->template->topic = $this->registry->db->get_topic_by_id($_REQUEST['topic_id']);
 
 		$this->registry->template->sysu_show('topic_update');
 	}
@@ -95,12 +95,16 @@ Class sysu_indexController Extends baseController {
 		$this->registry->template->jsfile = $jsfile;
 		$this->registry->template->cssfile = $cssfile;
 		
-		$this->registry->template->topic = $this->registry->db->get_topicById($_REQUEST['topic_id']);
+		$this->registry->template->topic = $this->registry->db->get_topic_by_id($_REQUEST['topic_id']);
 
     	$this->registry->template->sysu_show('topic_view');
 	}
 	public function topic_del(){
 		$current_topic['id'] = $_REQUEST['topic_id'];
+		
+		$this->registry->db->del_topic_by_id($_REQUEST['topic_id']);
+		
+		header("location:index.php?rt=sysu_index/topic");
 	}
 
 
