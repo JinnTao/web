@@ -1,0 +1,46 @@
+.media{
+	/*border: 1px solid black;*/
+}
+
+.span7{
+	/*border: 1px solid red;*/
+	margin-left: 0px;
+	
+}
+.span2{
+	/*border: 1px solid blue;*/
+	margin-left: 5px;
+	
+}
+.span4 {
+	margin-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	width: 320px;
+}
+.media-list{
+	min-width: 670px;
+}
+
+.topiclist{
+	padding:5px;
+	margin-right: 20px;
+	border: 1px solid #f0e4c0;
+	margin-top: 10px;
+}
+
+.container{
+	clear: both;
+}
+
+.popularking{
+	margin-top: 20px;
+}
+
+.populartopic{
+	margin-top: 50px;
+}
+.hottopic{
+	padding:5px;
+	border-bottom: 1px solid #f0e4c0;
+}

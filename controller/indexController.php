@@ -7,8 +7,8 @@ Class indexController Extends baseController {
 public function index() {
 		session_destroy();
 		
-		header("Location:index.php?rt=sysu_index/index");
-	/*	
+		// header("Location:index.php?rt=sysu_index/index");
+		
 		$jsfile = array();
 		$cssfile = array();
 		
@@ -22,7 +22,7 @@ public function index() {
 		$this->registry->template->cssfile = $cssfile;
 		
 		
-    	$this->registry->template->show('index');*/
+    	$this->registry->template->show('index');
 }
 
 public function register() {
@@ -32,7 +32,7 @@ public function register() {
 
 		$this->registry->template->jsfile = $jsfile;
 
-        $this->registry->template->show('register');
+        $this->registry->template->show('registe');
 }
 
 public function login() {
@@ -96,6 +96,7 @@ public function login_ajax()
 public function login_manager()
 {
 		$_SESSION['email'] =  $_REQUEST['email'];
+		
         $this->registry->template->show('loading');
 		
         header("refresh:2;url=index.php?rt=sysu_index/index");
