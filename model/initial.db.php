@@ -22,8 +22,8 @@
 	id int(10) NOT NULL auto_increment,
 	email VARCHAR(80) NOT NULL,
 	password VARCHAR(40) NOT NULL,
-	name VARCHAR(20),
-	photo VARCHAR(60),
+	name VARCHAR(80),
+	photo VARCHAR(200),
 	gender CHAR(1),
 	age CHAR(4),
 	description TEXT,
@@ -35,6 +35,14 @@
 	}
 	else
 		echo 'Error creating table::' . mysql_error() . "<br>";
+		
+	$test_user_sql =  "Insert Into Users(email,password,name,age,description,sign_up_time) VALUES('test@163.com','123456','admin','20','I am CEO,Bitch!','2014-03-03')";
+	if(mysql_query($test_user_sql))
+	{
+		echo 'Test User initialized! <br>';
+	}
+	else
+		echo 'Error initialized ::'.mysql_error().'<br>';
 		
 		
 	mysql_close($link);
@@ -89,6 +97,27 @@
 		
 		
 	mysql_close($link);
+	
+	/*create tables Friends*/
+	$link = mysql_connect($db_config["hostname"], $db_config["username"], $db_config["password"]);
+	mysql_select_db($db_config["database"], $link);
+	$sql_create_table = "CREATE TABLE Friends(
+	id1 int(11) NOT NULL,
+	id2 int(11) NOT NULL,
+	FOREIGN KEY (id1) references Users (id) ON DELETE CASCADE,
+	FOREIGN KEY (id2) references Users (id) ON DELETE CASCADE
+	)";
+	
+	if(mysql_query($sql_create_table, $link)){
+		echo 'Table Friends created!' . "<br>";
+	}
+	else
+		echo 'Error creating table::' . mysql_error() . "<br>";
+		
+		
+	mysql_close($link);
+	
+	
 	
 ?>
 </html>

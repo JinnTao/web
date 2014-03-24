@@ -52,14 +52,13 @@ public function new_user($para){
 	}
 } 
 
-public function update_user($para){
+public function update_user_baseInformation($para){
 	try {
 		self::$instance->beginTransaction();
 		
 		
 		$insert_string2 = "UPDATE Users SET 
 		    name = '". $para['name'] .
-		"' , photo = '".$para['photo'] .
 		"' , gender = '". $para['gender'] .
 		"' , age = '". $para['age'].
 		"' , description = '".  $para['description'].
@@ -77,7 +76,72 @@ public function update_user($para){
 		return false;
 	}
 } 
+public function update_user_photo($para){
+	try {
+		self::$instance->beginTransaction();
+		
+		
+		$insert_string2 = "UPDATE Users SET ".
+		"' , photo = '".$para['photo'] .
+		"' Where id = '". $para['id']."'";
+		
+		self::$instance->exec($insert_string2);
+		echo "update finish!" .$insert_string2 ;
+		self::$instance->commit();
+	
+        return true;
+		}
+	 catch (Exception $e) {
+		self::$instance->rollBack();
+		echo "cannot update ".$e->getMessage().$insert_string2 . "    <br>"; 
+		return false;
+	}
 
+}
+public function update_user_password($para){
+	try {
+		self::$instance->beginTransaction();
+		
+		
+		$insert_string2 = "UPDATE Users SET ".
+		"' , password = '".$para['password'] .
+		"' Where id = '". $para['id']."'";
+		
+		self::$instance->exec($insert_string2);
+		echo "update finish!" .$insert_string2 ;
+		self::$instance->commit();
+	
+        return true;
+		}
+	 catch (Exception $e) {
+		self::$instance->rollBack();
+		echo "cannot update ".$e->getMessage().$insert_string2 . "    <br>"; 
+		return false;
+	}
+
+}
+
+public function get_user_byEmail($email){
+	try {
+ 		self::$instance->beginTransaction();
+		$sql_string = "Select * From Users where email = "."'".$email."'"."";
+		$query = self::$instance->query($sql_string);
+		self::$instance->commit();
+		
+		
+		$query->setFetchMode(PDO::FETCH_ASSOC); 
+		$user = $query->fetchAll();
+		//print_r ($topic_array);
+        //echo "topic create successfully!";
+		return $user['0'];
+		}
+	 catch (Exception $e) {
+		self::$instance->rollBack();
+		echo "cannot query ".$e->getMessage(). "    <br>"; 
+		return false;
+	}
+
+}
 // test email wether email exist!
 function has_user_email($email){
 	try{
@@ -202,7 +266,7 @@ public function get_topicById($id){
 		$topic = $query->fetchAll();
 		//print_r ($topic_array);
         //echo "topic create successfully!";
-		return $topic;
+		return $topic['0'];
 		}
 	 catch (Exception $e) {
 		self::$instance->rollBack();
@@ -210,6 +274,8 @@ public function get_topicById($id){
 		return false;
 	}
 }
+
+
 
 public function update_topic($topic){
 	try {
