@@ -1,6 +1,6 @@
 
-<form action="index.php?rt=sysu_index/topic_update_manage&topic_id=<?php echo $topic['0']['id']; ?>" onsubmit="return formSubmit(this)" method="post">
-  <input type="text" placeholder="Title" class="input-block-level" id="topic_title" name="topic_title" value="<?php echo $topic['0']['title']; ?>">
+<form action="index.php?rt=sysu_index/topic_update_manage&topic_id=<?php echo $topic['id']; ?>" onsubmit="return formSubmit(this)" method="post">
+  <input type="text" placeholder="Title" class="input-block-level" id="topic_title" name="topic_title" value="<?php echo $topic['title']; ?>">
   <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
       <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
@@ -49,7 +49,7 @@
     </div>
 
     <div id="editor" class="editor" name="topic_content">
-      <?php echo $topic['0']['content']; ?>
+      <?php echo $topic['content']; ?>
     </div>
     
      <button id="publish" type="submit" class="btn topic-btn">发布</button>

@@ -10,7 +10,7 @@ echo '
 			<div class="article-foot">
             	<span><i class="icon-thumbs-up"></i><font>512</font></span>&nbsp;
 				<a href="index.php?rt=sysu_index/topic_update&topic_id='.$topic['id'].'"><i class="icon-pencil"></i><font></font></a>&nbsp;
-           		<span><i class="icon-trash"></i><font></font></span>
+           		<a href="index.php?rt=sysu_index/topic_del&topic_id='.$topic['id'].'"><i class="icon-trash"></i><font></font></a>
             	<block class="pull-right topic-writer">
                 	by&nbsp;:&nbsp;<small class="topic-writer">'.$topic['start_time'].'</small>
 					<small class="topic-writer">'.$topic['start_id'].'</small>
