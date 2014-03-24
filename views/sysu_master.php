@@ -37,7 +37,8 @@ media="screen"/> ';
           <ul class="nav">
             <li><a href="index.php?rt=sysu_index">主页</a></li>
             <li><a href="index.php?rt=sysu_index/topic">话题</a></li>
-            <li><a href="#find">发现</a></li>
+            <li><a href="index.php?rt=sysu_index/friend">好友</a></li>
+            <li><a href="index.php?rt=sysu_index/explore">发现</a></li>
             <li class="dropdown">
               <a href="#messages" class="dropdown-toggle" data-toggle="dropdown">消息 <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -62,7 +63,7 @@ media="screen"/> ';
                               
           <ul class="nav pull-right">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-balck"></i>usermail<b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-balck"></i><?php echo $_SESSION['email']?><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="#"><i class="icon-pencil"></i>编辑</a></li>
           <li><a href="#"><i class="icon-trash"></i> 删除</a></li>
