@@ -3,6 +3,7 @@
         <div>
           <p class="pull-right"><a href="http://weibo.com/ahtxd" target="_blank"><i class="icon-twitter"></i></a></p>
           <h4><strong>田阿甘</strong>，我是来学习的</h4>
+          <?php echo($user_id); ?>
         </div>
         <div class="container">`
             <div class="row">
