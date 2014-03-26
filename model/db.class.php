@@ -17,7 +17,7 @@ class db{
 	/*** maybe set the db name here later ***/
   }
   
-  /**
+  /** 
   *
   * Like the constructor, we make __clone private
   * so nobody can clone the instance
@@ -82,7 +82,7 @@ class db{
 		  
 		  
 		  $insert_string2 = "UPDATE Users SET ".
-		  "' , photo = '".$para['photo'] .
+		  "photo = '".$para['photo'] .
 		  "' Where id = '". $para['id']."'";
 		  
 		  self::$instance->exec($insert_string2);
@@ -104,7 +104,7 @@ class db{
 		  
 		  
 		  $insert_string2 = "UPDATE Users SET ".
-		  "' , password = '".$para['password'] .
+		  "password = '".$para['password'] .
 		  "' Where id = '". $para['id']."'";
 		  
 		  self::$instance->exec($insert_string2);
@@ -153,9 +153,8 @@ class db{
 		  
 		  $query->setFetchMode(PDO::FETCH_ASSOC); 
 		  $user = $query->fetchAll();
-		  //print_r ($topic_array);
-		  //echo "topic create successfully!";
-		  return $user;
+
+		  return $user['0']['id'];
 		  }
 	   catch (Exception $e) {
 		  self::$instance->rollBack();
@@ -347,13 +346,112 @@ class db{
 		  return false;
 	  }
   }
-  public function check_friend($id1,$id2)
-  {
-	  
-	  
+  public function make_friends($id1,$id2){
+	  if(self::check_friend($id1, $id2) == true){
+		  echo 'make friend failure!';
+		  		 	 return false;
+	  	  }
+
+	  try{
+		  self::$instance->beginTransaction();
+		  $insert_string = "INSERT INTO Friends (id1, id2) VALUES(" . "'" . $id1 . "'" . "," . "'" . $id2  . "'" . ")";
+		  self::$instance->exec($insert_string);
+		  self::$instance->commit();
+		  echo 'make friends success!';
+		  return true;
+
+	  }
+	  catch(Exception $e){
+		  self::$instance->rollBack();
+		  echo "cannot del ".$e->getMessage(). "    <br>"; 
+		  return false;
+	  }
   }
+  
+  public function check_friend($id1,$id2)
+	{	
+	 try{
+		self::$instance->beginTransaction();
+		$query_string1 = "(SELECT id1 , id2 from Friends where id1 = " . "'" . $id1 . "'" . " AND id2 = " . "'" . $id2 . "'" . ")";
+		$query_string2 = "(SELECT id1 , id2 from Friends where id1 = " . "'" . $id2 . "'" . " AND id2 = " . "'" . $id1 . "'" . ")";
+		
+		$result1 = self::$instance->query($query_string1);
+		//self::$instance->commit();
 
-
+		
+		$result2 = self::$instance->query($query_string2);
+		self::$instance->commit();
+		
+		$result1->setFetchMode(PDO::FETCH_ASSOC); 
+		$anwser1 = $result1->fetchAll();
+		
+		$result2->setFetchMode(PDO::FETCH_ASSOC); 
+		$anwser2 = $result2->fetchAll();
+		
+		if($anwser1 || $anwser2){
+			return true;
+		}
+		else
+			return false;
+	 }
+	catch(Exception $e) {
+		  self::$instance->rollBack();
+		  echo "cannot check friend ".$e->getMessage(). "    <br>".$query_string1.'<br>'.$query_string2; 
+		  return false;
+	}
+   }
+   
+   public function get_friend_list_by_user_id($id){
+	try{
+		$friend_list = array();
+		self::$instance->beginTransaction();
+		$sql_string = "(SELECT id1 , id2 from Friends where id1 = " . "'" . $id . "'" . " OR id2 = ". "'" . $id . "'" . ")";
+		
+		$result = self::$instance->query($sql_string);
+		self::$instance->commit();
+		$result->setFetchMode(PDO::FETCH_ASSOC); 
+		$result = $result->fetchAll();
+		if($result){
+			foreach($result as $key => $value){
+				if($value['id1'] == $id)
+					$friend_list[] = $value['id2'];
+				else
+					$friend_list[] = $value['id1'];
+			}
+		}
+		
+		return $friend_list;
+		
+		
+	 }
+	catch(Exception $e) {
+		  self::$instance->rollBack();
+		  echo "cannot return list ".$e->getMessage(). "    <br>"; 
+		  return null;
+	}
+   }
+   
+   public function del_friend_by_user_id($user_id,$friend_id){
+   	  try {
+		  $user_id = "'".$user_id."'";
+		  $friend_id = "'".$friend_id."'";
+		  self::$instance->beginTransaction();
+		  $sql_string = "DELETE FROM Friends WHERE (id1 = " . $user_id . " AND id2 = " . $friend_id . ") OR (
+					id1 = " . $friend_id . " AND id2 = " . $user_id . ")";
+		  self::$instance->exec($sql_string);
+		  self::$instance->commit();
+		  //echo "frend".$user_id."    ".$friend_id." del successfully!";
+		  return true;
+		  }
+	   catch (Exception $e) {
+		  self::$instance->rollBack();
+		  echo "cannot del ".$e->getMessage(). "    <br>"; 
+		  return false;
+	  }
+   
+   }
+   
+   
 
 }/*** end of class ***/
 ?>

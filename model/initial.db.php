@@ -20,7 +20,7 @@
 	mysql_select_db($db_config["database"], $link);
 	$sql_create_user_table = "CREATE TABLE Users(
 	id int(10) NOT NULL auto_increment,
-	email VARCHAR(80) NOT NULL,
+	[email] VARCHAR(80) NOT NULL UNIQUE,
 	password VARCHAR(40) NOT NULL,
 	name VARCHAR(80),
 	photo VARCHAR(200),
