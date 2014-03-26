@@ -9,57 +9,74 @@ Class sysu_indexController Extends baseController {
 
 		$this->registry->template->jsfile = $jsfile;
 		$this->registry->template->cssfile = $cssfile;
-		$email = 'test@163.com';
-		$user = array();
-		$user['email'] = 'test2@163.com';
-		$user['password'] = '123456';
-		$user['name'] = '123';
-		$user['gender'] = 'F';
-		$user['age'] = '23';
-		$user['description']= 'Hello world!';
-		$id1 = '2';
-		$id2 = '55';
-		$friend_list = $this->registry->db->del_friend_by_user_id($id1,$id2);
-		print_r($friend_list);
-		//$this->registry->template->user_id = $this->registry->db->make_friends($id1,$id2);
-		$id1 = '2';
-		$id2 = '5';
-		//$this->registry->template->user_id = $this->registry->db->make_friends($id1,$id2);
-		$id1 = '3';
-		$id2 = '6';
-		//$this->registry->template->user_id = $this->registry->db->make_friends($id1,$id2);
-		$id1 = '3';
-		$id2 = '1';
-		//$this->registry->template->user_id = $this->registry->db->make_friends($id1,$id2);
-		$id1 = '3';
-		$id2 = '4';
-		//$this->registry->template->user_id = $this->registry->db->make_friends($id1,$id2);
-		$id1 = '2';
-		$id2 = '3';
-		//$this->registry->template->user_id = $this->registry->db->make_friends($id1,$id2);
-		$id1 = '2';
-		$id2 = '5';
-		//$this->registry->template->user_id = $this->registry->db->make_friends($id1,$id2);
-		//$this->registry->template->user_id = $this->registry->db->new_user($user);
-		//$this->registry->template->user_id = $this->registry->db->update_user_base_information($user);
 		
 		
-		//$this->registry->template->sysu_show('sysu_index');
+		$this->registry->template->sysu_show('sysu_index');
 	}
 
 	public function info(){
 		$jsfile = array();
 		$cssfile = array();
-
+		$userinfo = array();
 		// $cssfile[] = './front_end/css/sysu_index.css';
+		$jsfile[] = './front_end/js/sysu_info.js';
 
+		$userid = $this->registry->db->get_user_id_by_email($_SESSION['email']);
+		$userinfo = $this->registry->db->get_user_by_email($_SESSION['email']);
+
+		
 		$this->registry->template->jsfile = $jsfile;
 		$this->registry->template->cssfile = $cssfile;
-		
-		
+		$this->registry->template->username = $userinfo['name'];
+		$this->registry->template->userid = $userinfo['id'];
+		$this->registry->template->sex = $userinfo['gender'];
+		$this->registry->template->age = $userinfo['age'];
+		$this->registry->template->resume = $userinfo['description'];
+		$this->registry->template->signuptime = $userinfo['sign_up_time'];		
+
 		$this->registry->template->sysu_show('sysu_info');
 	}
 
+	public function info_change(){
+		$jsfile = array();
+		$cssfile = array();
+		$userinfo = array();
+		$insertuser = array();
+		$insertpw = array();
+		$userid = $this->registry->db->get_user_id_by_email($_SESSION['email']);
+		// update user base information
+		if(isset($_REQUEST['username'])){
+			$insertuser['name']=  $_REQUEST['username'];
+			$insertuser['gender'] = $_REQUEST ['sex'];
+			$insertuser['age'] = $_REQUEST ['age'];
+			$insertuser['description'] = $_REQUEST['resume'];
+			$insertuser['id'] = $userid;
+			$this->registry->db->update_user_base_information($insertuser);
+		}	
+		//update user password
+		if (isset($_REQUEST ['newpw'])) {
+			$insertpw['password'] = $_REQUEST['newpw'];
+			$insertpw['id'] = $userid;
+			$this->registry->db->update_user_password($insertpw);			
+		}
+
+		$userinfo = $this->registry->db->get_user_by_email($_SESSION['email']);
+
+		// $cssfile[] = './front_end/css/sysu_index.css';
+		$jsfile[] = './front_end/js/sysu_info.js';
+		
+		$this->registry->template->jsfile = $jsfile;
+		$this->registry->template->cssfile = $cssfile;
+		$this->registry->template->username = $userinfo['name'];
+		$this->registry->template->userid = $userinfo['id'];
+		$this->registry->template->sex = $userinfo['gender'];
+		$this->registry->template->age = $userinfo['age'];
+		$this->registry->template->resume = $userinfo['description'];
+		$this->registry->template->signuptime = $userinfo['sign_up_time'];		
+	
+		$this->registry->template->sysu_show('sysu_info');
+	}
+	
 	public function topic(){
 		$jsfile = array();
 		$cssfile = array();
