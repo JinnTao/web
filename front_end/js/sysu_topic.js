@@ -1,4 +1,5 @@
 // JavaScript Document
+
  $(function(){
     function initToolbarBootstrapBindings() {
       var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier', 
@@ -38,6 +39,48 @@
     input.value = document.getElementById('editor').innerHTML;
 	input.id = 'topic_content';
     form.appendChild(input);
-		var dsa = 1;
+
     return true;
+  }
+
+window.onload=function(){
+	fresh_topic_like();
 }
+  
+function fresh_topic_like(){
+	var like = document.getElementsByName("topic_like");
+	var like_number;
+	for(var i = 0;i < like.length;i++){
+		$.ajax({
+			type:"POST",
+			async:false,
+       		cache:false,
+			url:"index.php?rt=sysu_topic/count_like_ajax&topic_id="+like[i].getAttribute("topic_id"),
+            success: function(result) { 
+			   //like[i].innerHTML = result;
+			   like_number = result;
+			   //like[i].innerHTML = '123';
+            }
+		});
+		like[i].innerHTML = like_number;		
+	}
+
+}
+
+  function topic_add_like(topic_id){
+	var like_number;
+	$.ajax({
+			type:"POST",
+			async:false,
+       		cache:false,
+			url:"index.php?rt=sysu_topic/add_like&topic_id="+topic_id,
+            success: function(result) { 
+			   like_number = result;
+            }
+	});	
+	var current_topic_id = "topic_like"+topic_id;
+	var topic_likes = document.getElementById(current_topic_id);
+	topic_likes.innerHTML = like_number;
+  }
+
+

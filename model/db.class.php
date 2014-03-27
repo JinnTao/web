@@ -65,7 +65,7 @@ class db{
 		  "' Where id = '". $para['id']."'";
 		  
 		  self::$instance->exec($insert_string2);
-		  echo "update finish!" .$insert_string2 ;
+		  //echo "update finish!" .$insert_string2 ;
 		  self::$instance->commit();
 	  
 		  return true;
@@ -86,7 +86,7 @@ class db{
 		  "' Where id = '". $para['id']."'";
 		  
 		  self::$instance->exec($insert_string2);
-		  echo "update finish!" .$insert_string2 ;
+		 // echo "update finish!" .$insert_string2 ;
 		  self::$instance->commit();
 	  
 		  return true;
@@ -108,7 +108,7 @@ class db{
 		  "' Where id = '". $para['id']."'";
 		  
 		  self::$instance->exec($insert_string2);
-		  echo "update finish!" .$insert_string2 ;
+		  //echo "update finish!" .$insert_string2 ;
 		  self::$instance->commit();
 	  
 		  return true;
@@ -337,7 +337,7 @@ class db{
 		  $insert_string2 = "DELETE FROM Users WHERE id = '".$id."'";
 		  self::$instance->exec($insert_string2);
 		  self::$instance->commit();
-		  echo "User del successfully!";
+		//  echo "User del successfully!";
 		  return true;
 		  }
 	   catch (Exception $e) {
@@ -348,7 +348,7 @@ class db{
   }
   public function make_friends($id1,$id2){
 	  if(self::check_friend($id1, $id2) == true){
-		  echo 'make friend failure!';
+		//  echo 'make friend failure!';
 		  		 	 return false;
 	  	  }
 
@@ -357,7 +357,7 @@ class db{
 		  $insert_string = "INSERT INTO Friends (id1, id2) VALUES(" . "'" . $id1 . "'" . "," . "'" . $id2  . "'" . ")";
 		  self::$instance->exec($insert_string);
 		  self::$instance->commit();
-		  echo 'make friends success!';
+		 // echo 'make friends success!';
 		  return true;
 
 	  }
@@ -438,6 +438,106 @@ class db{
 		  self::$instance->beginTransaction();
 		  $sql_string = "DELETE FROM Friends WHERE (id1 = " . $user_id . " AND id2 = " . $friend_id . ") OR (
 					id1 = " . $friend_id . " AND id2 = " . $user_id . ")";
+		  self::$instance->exec($sql_string);
+		  self::$instance->commit();
+		  //echo "frend".$user_id."    ".$friend_id." del successfully!";
+		  return true;
+		  }
+	   catch (Exception $e) {
+		  self::$instance->rollBack();
+		  echo "cannot del ".$e->getMessage(). "    <br>"; 
+		  return false;
+	  }
+   
+   }
+
+  public function topic_add_like_by_user($topic_id,$user_id){
+	  if(self::check_topic_user_like($topic_id, $user_id) == true){
+		 // echo 'add like failure!';
+		  		 	 return false;
+	  	  }
+
+	  try{
+		  self::$instance->beginTransaction();
+		  $insert_string = "INSERT INTO topic_user_like (topic_id, user_id) VALUES(" . "'" . $topic_id . "'" . "," . "'" . $user_id  . "'" . ")";
+		  self::$instance->exec($insert_string);
+		  self::$instance->commit();
+		//  echo 'add like success!';
+		  return true;
+
+	  }
+	  catch(Exception $e){
+		  self::$instance->rollBack();
+		  echo "cannot del ".$e->getMessage(). "    <br>"; 
+		  return false;
+	  }
+  }
+  
+  public function check_topic_user_like($topic_id,$user_id)
+	{	
+	 try{
+		self::$instance->beginTransaction();
+		$query_string1 = "(SELECT topic_id , user_id from Topic_User_Like where topic_id = " . "'" . $topic_id . "'" . " AND user_id = " . "'" . $user_id . "'" . ")";
+		
+		$result1 = self::$instance->query($query_string1);
+		//self::$instance->commit();
+
+		
+		//$result2 = self::$instance->query($query_string2);
+		self::$instance->commit();
+		
+		$result1->setFetchMode(PDO::FETCH_ASSOC); 
+		$anwser1 = $result1->fetchAll();
+		
+		//$result2->setFetchMode(PDO::FETCH_ASSOC); 
+		//$anwser2 = $result2->fetchAll();
+		
+		if($anwser1){
+			return true;
+		}
+		else
+			return false;
+	 }
+	catch(Exception $e) {
+		  self::$instance->rollBack();
+		  echo "cannot check like ".$e->getMessage(). "    <br>".$query_string1.'<br>'; 
+		  return false;
+	}
+   }
+   
+   public function get_like_list_by_topic_id($id){
+	try{
+		$like_list = array();
+		self::$instance->beginTransaction();
+		$sql_string = "(SELECT user_id from topic_user_like where topic_id = " . "'" . $id . "'" . ")";
+		
+		$result = self::$instance->query($sql_string);
+		self::$instance->commit();
+		$result->setFetchMode(PDO::FETCH_ASSOC); 
+		$result = $result->fetchAll();
+		if($result){
+			foreach($result as $key => $value){
+					$like_list[] = $value['user_id'];
+			}
+		}
+		
+		return $like_list;
+		
+		
+	 }
+	catch(Exception $e) {
+		  self::$instance->rollBack();
+		  echo "cannot return list ".$e->getMessage(). "    <br>"; 
+		  return null;
+	}
+   }
+   
+   public function del_topic_like_by_user_id($topic_id,$user_id){
+   	  try {
+		  $topic_id = "'".$topic_id."'";
+		  $user_id = "'".$user_id."'";
+		  self::$instance->beginTransaction();
+		  $sql_string = "DELETE FROM Topic_User_like WHERE (topic_id = " . $topic_id . " AND user_id = " . $user_id . ")";
 		  self::$instance->exec($sql_string);
 		  self::$instance->commit();
 		  //echo "frend".$user_id."    ".$friend_id." del successfully!";

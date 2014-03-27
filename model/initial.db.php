@@ -20,7 +20,7 @@
 	mysql_select_db($db_config["database"], $link);
 	$sql_create_user_table = "CREATE TABLE Users(
 	id int(10) NOT NULL auto_increment,
-	[email] VARCHAR(80) NOT NULL UNIQUE,
+	email VARCHAR(80) NOT NULL UNIQUE,
 	password VARCHAR(40) NOT NULL,
 	name VARCHAR(80),
 	photo VARCHAR(200),
@@ -113,6 +113,21 @@
 	}
 	else
 		echo 'Error creating table::' . mysql_error() . "<br>";
+	
+	/* create table topic_like*/	
+	$sql_create_table = "CREATE TABLE Topic_User_Like(
+	topic_id int(11) NOT NULL,
+	user_id int(11) NOT NULL,
+	FOREIGN KEY (topic_id) references Topics (id) ON DELETE CASCADE,
+	FOREIGN KEY (user_id) references Users (id) ON DELETE CASCADE
+	)";
+	
+	if(mysql_query($sql_create_table, $link)){
+		echo 'Table Topic_User_Like created!' . "<br>";
+	}
+	else
+		echo 'Error creating table::' . mysql_error() . "<br>";
+
 		
 		
 	mysql_close($link);

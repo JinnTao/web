@@ -3,5 +3,6 @@
 	font-family: 'Microsoft yahei', 'Neuton', serif;
 	}
 	.container_master{
-		margin:0px 250px 0px 250px auto;
+		margin:auto;
+		width:800px;
 	}
