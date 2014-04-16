@@ -54,6 +54,7 @@ $(document).ready(function () {
 				location.href = "index.php?rt=index/login_manager&email="+ useremail;
 			};
 		})
+		
 		return false;
 	}
 })

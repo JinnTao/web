@@ -1,5 +1,5 @@
 
-<form action="index.php?rt=sysu_index/topic_update_manage&topic_id=<?php echo $topic['id']; ?>" onsubmit="return formSubmit(this)" method="post">
+<form action="index.php?rt=sysu_topic/update_manage&topic_id=<?php echo $topic['id']; ?>" onsubmit="return formSubmit(this)" method="post">
   <input type="text" placeholder="Title" class="input-block-level" id="topic_title" name="topic_title" value="<?php echo $topic['title']; ?>">
   <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
       <div class="btn-group">

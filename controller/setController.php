@@ -1,33 +1,20 @@
 <?php
 
-Class sysu_indexController Extends baseController {
+Class setController Extends baseController {
 	public function index() {
-		if(isset($_SESSION['email'])){
-			$user_email = $_SESSION['email'];
-			self::set_cookies($user_email);
-		}
-		
 		$jsfile = array();
 		$cssfile = array();
+		$jsfile[] = './front_end/js/sysu_info.js';
+		$pagepath = 'set_info.php';
 
-		$cssfile[] = './front_end/css/sysu_index.css';
-
+		$this->registry->template->pagepath = $pagepath;
 		$this->registry->template->jsfile = $jsfile;
 		$this->registry->template->cssfile = $cssfile;
-		
-		$this->registry->template->sysu_show('sysu_index');
-	}
-	
-	public function set_cookies($user_email){
-		$user = array();
-		
-		$user = $this->registry->db->get_user_by_email($user_email);	
-		setcookie("user_id", $user['id'], time()+3600);
-		setcookie("user_email", $user['email'], time()+3600);
-		setcookie("user_name", $user['name'], time()+3600);
+		$this->registry->template->sysu_show('sysu_info');
 	}
 
-	public function info(){
+	public function info()
+	{
 		$jsfile = array();
 		$cssfile = array();
 		$userinfo = array();
@@ -36,8 +23,9 @@ Class sysu_indexController Extends baseController {
 
 		$userid = $this->registry->db->get_user_id_by_email($_SESSION['email']);
 		$userinfo = $this->registry->db->get_user_by_email($_SESSION['email']);
+		$pagepath = 'set_info.php';
 
-		
+		$this->registry->template->pagepath = $pagepath;
 		$this->registry->template->jsfile = $jsfile;
 		$this->registry->template->cssfile = $cssfile;
 		$this->registry->template->username = $userinfo['name'];
@@ -49,6 +37,7 @@ Class sysu_indexController Extends baseController {
 
 		$this->registry->template->sysu_show('sysu_info');
 	}
+
 
 	public function info_change(){
 		$jsfile = array();
@@ -73,65 +62,63 @@ Class sysu_indexController Extends baseController {
 			$this->registry->db->update_user_password($insertpw);			
 		}
 
-		$userinfo = $this->registry->db->get_user_by_email($_SESSION['email']);
+		// $userinfo = $this->registry->db->get_user_by_email($_SESSION['email']);
 
 		// $cssfile[] = './front_end/css/sysu_index.css';
+		// $jsfile[] = './front_end/js/sysu_info.js';
+		// $pagepath = 'set_info.php';
+
+		// $this->registry->template->pagepath = $pagepath;
+		// $this->registry->template->jsfile = $jsfile;
+		// $this->registry->template->cssfile = $cssfile;
+		// $this->registry->template->username = $userinfo['name'];
+		// $this->registry->template->userid = $userinfo['id'];
+		// $this->registry->template->sex = $userinfo['gender'];
+		// $this->registry->template->age = $userinfo['age'];
+		// $this->registry->template->resume = $userinfo['description'];
+		// $this->registry->template->signuptime = $userinfo['sign_up_time'];		
+	
+		// $this->registry->template->sysu_show('sysu_info');
+		header("location:index.php?rt=set/info");
+	}
+
+	public function avatar()
+	{
+		if(!isset($_COOKIE['user_id'])){
+			header("location:index.php");			
+		}
+		$jsfile = array();
+		$cssfile = array();
+
 		$jsfile[] = './front_end/js/sysu_info.js';
-		
+		$jsfile[] = './front_end/js/jquery-pack.js';
+		$jsfile[] = './front_end/js/jquery.imgareaselect.min.js';
+		$cssfile[] = './front_end/css/set.css';
+		$pagepath = 'set_avatar.php';
+
+		$userid = $_COOKIE['user_id'];
+		$userinfo = $this->registry->db->get_user_by_email($_SESSION['email']);
+		$photo = $userinfo['photo'];
+
+		$this->registry->template->photo = $photo;
+		$this->registry->template->userid = $userid;
+		$this->registry->template->pagepath = $pagepath;
 		$this->registry->template->jsfile = $jsfile;
 		$this->registry->template->cssfile = $cssfile;
-		$this->registry->template->username = $userinfo['name'];
-		$this->registry->template->userid = $userinfo['id'];
-		$this->registry->template->sex = $userinfo['gender'];
-		$this->registry->template->age = $userinfo['age'];
-		$this->registry->template->resume = $userinfo['description'];
-		$this->registry->template->signuptime = $userinfo['sign_up_time'];		
-	
 		$this->registry->template->sysu_show('sysu_info');
 	}
 
-	
-
-
-public function friend(){
+	public function password()
+	{
 		$jsfile = array();
 		$cssfile = array();
-	
+		$jsfile[] = './front_end/js/sysu_info.js';
+		$pagepath = 'set_pw.php';
 
-		// $jsfile[] = './front_end/js/sysu_topic.js';
-		// $cssfile[] = './front_end/css/sysu_topic.css';
-		
+		$this->registry->template->pagepath = $pagepath;
 		$this->registry->template->jsfile = $jsfile;
 		$this->registry->template->cssfile = $cssfile;
-    	$this->registry->template->sysu_show('sysu_friend');
+		$this->registry->template->sysu_show('sysu_info');
 	}
-
-	public function explore(){
-		$jsfile = array();
-		$cssfile = array();
-	
-
-		// $jsfile[] = './front_end/js/sysu_topic.js';
-		$cssfile[] = './front_end/css/sysu_explore.css';
-		
-		$this->registry->template->jsfile = $jsfile;
-		$this->registry->template->cssfile = $cssfile;
-    	$this->registry->template->sysu_show('sysu_explore');
-	}
-
-	public function result(){
-		$jsfile = array();
-		$cssfile = array();
-		// $jsfile[] = './front_end/js/sysu_topic.js';
-		// $cssfile[] = './front_end/css/sysu_explore.css';
-		$searchname=  $_REQUEST['searchname'];
-
-		
-		$this->registry->template->searchname = $searchname;
-		$this->registry->template->jsfile = $jsfile;
-		$this->registry->template->cssfile = $cssfile;
-    	$this->registry->template->sysu_show('sysu_result');
-	}
-
 }
 ?>

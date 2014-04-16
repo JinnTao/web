@@ -113,6 +113,21 @@
 	}
 	else
 		echo 'Error creating table::' . mysql_error() . "<br>";
+	
+	/* create table topic_like*/	
+	$sql_create_table = "CREATE TABLE Topic_User_Like(
+	topic_id int(11) NOT NULL,
+	user_id int(11) NOT NULL,
+	FOREIGN KEY (topic_id) references Topics (id) ON DELETE CASCADE,
+	FOREIGN KEY (user_id) references Users (id) ON DELETE CASCADE
+	)";
+	
+	if(mysql_query($sql_create_table, $link)){
+		echo 'Table Topic_User_Like created!' . "<br>";
+	}
+	else
+		echo 'Error creating table::' . mysql_error() . "<br>";
+
 		
 		
 	mysql_close($link);

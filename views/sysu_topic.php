@@ -4,15 +4,15 @@ foreach($topic_array as $topic){
 echo '	
  <div class="well">
   		<div class="topic-container">
-			<a href="index.php?rt=sysu_index/topic_view&topic_id='.$topic['id'].'"><h4>'.$topic['title'].'</h4></a>
+			<a href="index.php?rt=sysu_topic/view&topic_id='.$topic['id'].'"><h4>'.$topic['title'].'</h4></a>
 			<div  class="topic-content-ellipsis">
 			'.$topic['content'].'
 			</div>
  <hr size="4" color="#999999"/> 
 			<div class="article-foot">
-            	<span><i class="icon-thumbs-up"></i><font>512</font></span>&nbsp;
-				<a href="index.php?rt=sysu_index/topic_update&topic_id='.$topic['id'].'"><i class="icon-pencil"></i><font></font></a>&nbsp;
-           		<a href="index.php?rt=sysu_index/topic_del&topic_id='.$topic['id'].'"><i class="icon-trash"></i><font></font></a>
+            	<span onclick="topic_add_like('.$topic['id'].')"><i class="icon-thumbs-up"></i><font id="topic_like'.$topic['id'].'" name="topic_like" topic_id="'.$topic['id'].'"></font></span>&nbsp;
+				<a href="index.php?rt=sysu_topic/update&topic_id='.$topic['id'].'"><i class="icon-pencil"></i><font></font></a>&nbsp;
+           		<a href="index.php?rt=sysu_topic/del&topic_id='.$topic['id'].'"><i class="icon-trash"></i><font></font></a>
             	<block class="pull-right topic-writer">
                 	by&nbsp;:&nbsp;<small class="topic-writer">'.$topic['start_time'].'</small>
 					<small class="topic-writer">'.$topic['start_id'].'</small>
@@ -26,7 +26,7 @@ echo '
 }
 ?>
 
-<form action="index.php?rt=sysu_index/topic_manager" onsubmit="return formSubmit(this)" method="post">
+<form action="index.php?rt=sysu_topic/manager" onsubmit="return formSubmit(this)" method="post">
   <input type="text" placeholder="Title" class="input-block-level" id="topic_title" name="topic_title">
   <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
       <div class="btn-group">

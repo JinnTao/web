@@ -30,8 +30,8 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
             <li><a href="index.php?rt=sysu_index">主页</a></li>
-            <li><a href="index.php?rt=sysu_index/topic">话题</a></li>
-            <li><a href="index.php?rt=sysu_index/friend">好友</a></li>
+            <li><a href="index.php?rt=sysu_topic/index">话题</a></li>
+            <li><a href="index.php?rt=friend/index">好友</a></li>
             <li><a href="index.php?rt=sysu_index/explore">发现</a></li>
             <li class="dropdown">
               <a href="#messages" class="dropdown-toggle" data-toggle="dropdown">消息 <b class="caret"></b></a>
