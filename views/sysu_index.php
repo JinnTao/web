@@ -15,7 +15,7 @@
                 
                  <p><i class="icon-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">填写居住地</a></p>
                  <p><i class="icon-briefcase"></i>&nbsp;&nbsp;<a href="#">填写工作信息</a></p>
-                 <p class="pull-right"><i class="icon-circle-arrow-right"></i>&nbsp;<a href="index.php?rt=sysu_index/info">查看详细资料</a></p>
+                 <p class="pull-right"><i class="icon-circle-arrow-right"></i>&nbsp;<a href="index.php?rt=set/info">查看详细资料</a></p>
                  <p><i class="icon-leaf"></i>&nbsp;&nbsp;<a href="#">填写学校</a></p>
                  
                  <hr size="4" color="#999999">

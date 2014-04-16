@@ -2,21 +2,22 @@ $(document).ready(function () {
 	var state1 = false;
 	var state2 = false;
 	var state3 = false;
+	//点击提交按钮后，判断表单内所有内容都有效才提交表单
 	$("#signup").click(function () {
 		if (ValidForm()) {
 			$("form").submit();		
 		};
 	})
 	//回车作用等同于按钮
-	$(document).keydown(function (event) {
-		var e = e || event;
-		var keycode = e.which || e.keyCode;
-		if (keycode == 13) {
-			if ($("#r-inputEmail").val() != '' && $("#r-inputPassword").val() != '' && $("#r-Password2").val() != '') {
-				$("#signup").click();
-			};
-		};
-	})
+	// $(document).keydown(function (event) {
+	// 	var e = e || event;
+	// 	var keycode = e.which || e.keyCode;
+	// 	if (keycode == 13) {
+	// 		if ($("#r-inputEmail").val() != '' && $("#r-inputPassword").val() != '' && $("#r-Password2").val() != '') {
+	// 			$("#signup").click();
+	// 		};
+	// 	};
+	// })
 
 	function ValidForm(){
 		//判断邮箱的输入是否正确
@@ -45,9 +46,20 @@ $(document).ready(function () {
 				$("span.r-pwtip").html("密码长度必须在6-20个字符之间");
 				$("#r-inputPassword").val('');
 			}else{
-				$("span.r-pwtip").html("");
-				$("i.r-pwtip").show();
-				state2 = true;
+				var empty = false;
+				for (var i = $("#r-inputPassword").val().length - 1; i >= 0; i--) {
+					if ($("#r-inputPassword").val().substr(i,1)==" ") {
+						$("i.r-pwtip").css({"display":"none"});
+						$("span.r-pwtip").html("密码不能含有空格");
+						$("#r-inputPassword").val('');
+						empty = true;
+					};
+				};
+				if (!empty) {
+					$("span.r-pwtip").html("");
+					$("i.r-pwtip").show();
+					state2 = true;
+				};
 			};
 		};
 		//判断密码是否再次确认
